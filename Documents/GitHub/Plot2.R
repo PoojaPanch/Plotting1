@@ -1,0 +1,5 @@
+power <- read.table("./power.txt", header=T, skip = 66637, nrows=2879, sep=";", col.names = c("Date","Time", "Global_active_power", "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+datetime <- strptime(paste(power$Date, power$Time, sep = " "), "%d/%m/%Y %H:%M:%S")
+png(file= "Plot2.png")
+plot(datetime, power$Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)", xlab= "")
+dev.off()

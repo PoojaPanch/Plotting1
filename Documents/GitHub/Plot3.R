@@ -1,0 +1,8 @@
+power <- read.table("./power.txt", header=T, skip = 66637, nrows=2879, sep=";", col.names = c("Date","Time", "Global_active_power", "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+datetime <- strptime(paste(power$Date, power$Time, sep = " "), "%d/%m/%Y %H:%M:%S")
+png(file="Plot3.png")
+plot(datetime, power$Sub_metering_1, type = "l", col = "black", ylab = "Energy sub metering", xlab = "")
+lines(datetime, power$Sub_metering_2, type = "l", col = "red")
+lines(datetime, power$Sub_metering_3, type = "l", col = "blue")
+legend("topright", pch = "____", col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+dev.off()
